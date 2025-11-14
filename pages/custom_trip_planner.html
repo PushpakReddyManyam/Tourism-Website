@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Trip Planner - ExploreWorld | Create Your Perfect Journey</title>
+    <meta name="description" content="Design your dream vacation with our intelligent trip planner. Get personalized recommendations, budget estimates, and expert guidance for unforgettable travel experiences.">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fexplorewor2505back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="font-inter bg-background text-text-primary">
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="homepage.html" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-wanderlust-ocean rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-gradient-ocean">ExploreWorld</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="destinations_gallery.html" class="text-text-secondary hover:text-primary transition-colors">Destinations</a>
+                    <a href="tour_packages.html" class="text-text-secondary hover:text-primary transition-colors">Packages</a>
+                    <a href="custom_trip_planner.html" class="text-primary font-medium hover:text-primary-700 transition-colors">Trip Planner</a>
+                    <a href="contact_concierge.html" class="text-text-secondary hover:text-primary transition-colors">Contact</a>
+                </div>
+
+                <!-- Theme Toggle & CTA -->
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggle" class="p-2 rounded-lg bg-neutral-100 hover:bg-neutral-200 transition-colors">
+                        <svg class="w-5 h-5 text-neutral-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                        </svg>
+                    </button>
+                    <a href="contact_concierge.html" class="btn-gradient hidden sm:inline-flex">Book Consultation</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors" id="mobileMenuBtn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobileMenu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-neutral-200">
+                    <a href="homepage.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="destinations_gallery.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Destinations</a>
+                    <a href="tour_packages.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Packages</a>
+                    <a href="custom_trip_planner.html" class="block px-3 py-2 text-primary font-medium">Trip Planner</a>
+                    <a href="contact_concierge.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Contact</a>
+                    <a href="contact_concierge.html" class="block mx-3 mt-4 btn-gradient text-center">Book Consultation</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-16 bg-gradient-hero-overlay">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
+                    Design Your <span class="text-gradient-ocean">Perfect</span><br>
+                    Travel <span class="text-gradient-sunset">Experience</span>
+                </h1>
+                <p class="text-xl sm:text-2xl text-text-secondary mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Our intelligent trip planner transforms your preferences into personalized itineraries with expert recommendations and real-time availability.
+                </p>
+                
+                <!-- Quick Start Options -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                    <button id="startPlanningBtn" class="btn-gradient text-lg px-8 py-4 rounded-xl">
+                        Start Planning Now
+                    </button>
+                    <button id="takeQuizBtn" class="bg-white text-primary border-2 border-primary font-semibold text-lg px-8 py-4 rounded-xl hover:bg-primary-50 transition-all duration-300">
+                        Take Travel Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trip Planner Wizard -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress Bar -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-text-secondary">Step <span id="currentStep">1</span> of 6</span>
+                    <span class="text-sm font-medium text-text-secondary"><span id="progressPercent">17</span>% Complete</span>
+                </div>
+                <div class="w-full bg-neutral-200 rounded-full h-2">
+                    <div id="progressBar" class="bg-gradient-wanderlust-ocean h-2 rounded-full transition-all duration-500" style="width: 17%"></div>
+                </div>
+            </div>
+
+            <!-- Step 1: Destination Selection -->
+            <div id="step1" class="wizard-step">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-text-primary mb-4">Where would you like to explore?</h2>
+                    <p class="text-lg text-text-secondary">Choose your dream destination or let us suggest based on your interests</p>
+                </div>
+
+                <!-- Smart Search -->
+                <div class="max-w-2xl mx-auto mb-8">
+                    <div class="relative">
+                        <input type="text" 
+                               id="destinationSearch"
+                               placeholder="Search destinations or describe your ideal trip..."
+                               class="w-full px-6 py-4 pr-16 text-lg rounded-2xl bg-surface border-2 border-neutral-200 focus:ring-4 focus:ring-primary-200 focus:border-primary focus:outline-none">
+                        <button class="absolute right-2 top-2 bottom-2 px-6 bg-gradient-wanderlust-ocean text-white rounded-xl hover:shadow-lg transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Popular Destinations -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="destination-card cursor-pointer group" data-destination="santorini">
+                        <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://images.unsplash.com/photo-1662121783914-9ee843f21504" 
+                                 alt="Iconic white-washed buildings and blue domes of Santorini overlooking the Aegean Sea at sunset" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=2938&h=1959&dpr=2'; this.onerror=null;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-semibold text-lg">Santorini, Greece</h3>
+                                <p class="text-white/80 text-sm">Romantic sunsets & luxury</p>
+                            </div>
+                            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center destination-checkbox">
+                                <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="destination-card cursor-pointer group" data-destination="bali">
+                        <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://images.unsplash.com/photo-1544503376-8112e05e9196" 
+                                 alt="Lush green rice terraces in Bali with traditional irrigation system and tropical landscape" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://images.pixabay.com/photo/2017/01/28/02/24/japan-2014618_1280.jpg'; this.onerror=null;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-semibold text-lg">Bali, Indonesia</h3>
+                                <p class="text-white/80 text-sm">Wellness & culture</p>
+                            </div>
+                            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center destination-checkbox">
+                                <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="destination-card cursor-pointer group" data-destination="iceland">
+                        <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://images.unsplash.com/photo-1721633616585-3f6c10c491fe" 
+                                 alt="Dramatic Northern Lights aurora borealis dancing over Icelandic landscape with snow-covered mountains" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://images.pexels.com/photos/1933239/pexels-photo-1933239.jpeg?auto=compress&cs=tinysrgb&w=2940&h=1960&dpr=2'; this.onerror=null;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-semibold text-lg">Iceland</h3>
+                                <p class="text-white/80 text-sm">Northern Lights & adventure</p>
+                            </div>
+                            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center destination-checkbox">
+                                <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="destination-card cursor-pointer group" data-destination="japan">
+                        <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://images.unsplash.com/photo-1617353239319-4f95ef06aa5a" 
+                                 alt="Traditional Japanese temple with cherry blossoms and authentic cultural architecture in serene garden setting" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://images.pexels.com/photos/161401/fushimi-inari-taisha-shrine-kyoto-japan-161401.jpeg?auto=compress&cs=tinysrgb&w=2940&h=1960&dpr=2'; this.onerror=null;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-semibold text-lg">Japan</h3>
+                                <p class="text-white/80 text-sm">Culture & tradition</p>
+                            </div>
+                            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center destination-checkbox">
+                                <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="destination-card cursor-pointer group" data-destination="maldives">
+                        <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://images.unsplash.com/photo-1698726654908-834d3a5330d8" 
+                                 alt="Luxurious overwater bungalow resort with crystal clear turquoise waters and tropical paradise setting" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://images.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_1280.jpg'; this.onerror=null;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-semibold text-lg">Maldives</h3>
+                                <p class="text-white/80 text-sm">Luxury beach paradise</p>
+                            </div>
+                            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center destination-checkbox">
+                                <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="destination-card cursor-pointer group" data-destination="peru">
+                        <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://images.unsplash.com/photo-1721633617418-d369cbb38e90" 
+                                 alt="Adventurous mountain climbing expedition with dramatic rocky peaks and challenging terrain for thrill seekers" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://images.pixabay.com/photo/2017/02/08/17/24/fantasy-2049567_1280.jpg'; this.onerror=null;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-semibold text-lg">Peru</h3>
+                                <p class="text-white/80 text-sm">Ancient wonders & adventure</p>
+                            </div>
+                            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center destination-checkbox">
+                                <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Travel Dates -->
+            <div id="step2" class="wizard-step hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-text-primary mb-4">When would you like to travel?</h2>
+                    <p class="text-lg text-text-secondary">Select your preferred travel dates or let us suggest the best time</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <!-- Date Selection -->
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Travel Dates</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-text-secondary mb-2">Departure Date</label>
+                                    <input type="date" id="departureDate" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary-200 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-text-secondary mb-2">Return Date</label>
+                                    <input type="date" id="returnDate" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary-200 focus:border-primary">
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="flexibleDates" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200">
+                                    <label for="flexibleDates" class="text-sm text-text-secondary">I'm flexible with dates</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Duration Options -->
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Trip Duration</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button class="duration-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-duration="3-5">
+                                    <div class="font-semibold text-text-primary">3-5 Days</div>
+                                    <div class="text-sm text-text-secondary">Weekend Getaway</div>
+                                </button>
+                                <button class="duration-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-duration="7-10">
+                                    <div class="font-semibold text-text-primary">7-10 Days</div>
+                                    <div class="text-sm text-text-secondary">Perfect Balance</div>
+                                </button>
+                                <button class="duration-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-duration="14">
+                                    <div class="font-semibold text-text-primary">2 Weeks</div>
+                                    <div class="text-sm text-text-secondary">Extended Journey</div>
+                                </button>
+                                <button class="duration-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-duration="21+">
+                                    <div class="font-semibold text-text-primary">3+ Weeks</div>
+                                    <div class="text-sm text-text-secondary">Epic Adventure</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Best Time to Visit -->
+                    <div class="card-elevated p-6">
+                        <h3 class="text-xl font-semibold text-text-primary mb-4">Best Time to Visit</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="text-center p-4 bg-success-50 rounded-lg">
+                                <div class="text-success font-semibold">Peak Season</div>
+                                <div class="text-sm text-text-secondary">June - August</div>
+                                <div class="text-xs text-text-secondary mt-1">Best weather, higher prices</div>
+                            </div>
+                            <div class="text-center p-4 bg-warning-50 rounded-lg">
+                                <div class="text-warning font-semibold">Shoulder Season</div>
+                                <div class="text-sm text-text-secondary">April - May, September</div>
+                                <div class="text-xs text-text-secondary mt-1">Good weather, better value</div>
+                            </div>
+                            <div class="text-center p-4 bg-primary-50 rounded-lg">
+                                <div class="text-primary font-semibold">Off Season</div>
+                                <div class="text-sm text-text-secondary">October - March</div>
+                                <div class="text-xs text-text-secondary mt-1">Lower prices, fewer crowds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Group Size & Travelers -->
+            <div id="step3" class="wizard-step hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-text-primary mb-4">Who's traveling?</h2>
+                    <p class="text-lg text-text-secondary">Tell us about your travel group to personalize recommendations</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <!-- Group Size -->
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Group Size</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <label class="text-text-primary">Adults (18+)</label>
+                                    <div class="flex items-center space-x-3">
+                                        <button class="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center" onclick="updateCounter('adults', -1)">-</button>
+                                        <span id="adultsCount" class="w-8 text-center font-semibold">2</span>
+                                        <button class="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center" onclick="updateCounter('adults', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <label class="text-text-primary">Children (2-17)</label>
+                                    <div class="flex items-center space-x-3">
+                                        <button class="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center" onclick="updateCounter('children', -1)">-</button>
+                                        <span id="childrenCount" class="w-8 text-center font-semibold">0</span>
+                                        <button class="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center" onclick="updateCounter('children', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <label class="text-text-primary">Infants (0-2)</label>
+                                    <div class="flex items-center space-x-3">
+                                        <button class="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center" onclick="updateCounter('infants', -1)">-</button>
+                                        <span id="infantsCount" class="w-8 text-center font-semibold">0</span>
+                                        <button class="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center" onclick="updateCounter('infants', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Travel Type -->
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Travel Type</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="travelType" value="couple" class="w-4 h-4 text-primary border-neutral-300 focus:ring-primary-200">
+                                    <span class="text-text-primary">Romantic Couple</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="travelType" value="family" class="w-4 h-4 text-primary border-neutral-300 focus:ring-primary-200">
+                                    <span class="text-text-primary">Family with Kids</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="travelType" value="friends" class="w-4 h-4 text-primary border-neutral-300 focus:ring-primary-200">
+                                    <span class="text-text-primary">Friends Group</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="travelType" value="solo" class="w-4 h-4 text-primary border-neutral-300 focus:ring-primary-200">
+                                    <span class="text-text-primary">Solo Adventure</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="travelType" value="business" class="w-4 h-4 text-primary border-neutral-300 focus:ring-primary-200">
+                                    <span class="text-text-primary">Business/Corporate</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Occasions -->
+                    <div class="card-elevated p-6">
+                        <h3 class="text-xl font-semibold text-text-primary mb-4">Special Occasion?</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <button class="occasion-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-occasion="honeymoon">
+                                <div class="text-2xl mb-1">💕</div>
+                                <div class="text-sm font-medium">Honeymoon</div>
+                            </button>
+                            <button class="occasion-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-occasion="anniversary">
+                                <div class="text-2xl mb-1">🥂</div>
+                                <div class="text-sm font-medium">Anniversary</div>
+                            </button>
+                            <button class="occasion-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-occasion="birthday">
+                                <div class="text-2xl mb-1">🎂</div>
+                                <div class="text-sm font-medium">Birthday</div>
+                            </button>
+                            <button class="occasion-option p-3 text-center border-2 border-neutral-200 rounded-lg hover:border-primary hover:bg-primary-50 transition-all duration-300" data-occasion="retirement">
+                                <div class="text-2xl mb-1">🎉</div>
+                                <div class="text-sm font-medium">Retirement</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Budget & Preferences -->
+            <div id="step4" class="wizard-step hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-text-primary mb-4">What's your budget?</h2>
+                    <p class="text-lg text-text-secondary">Help us find experiences that match your investment level</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <!-- Budget Range -->
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Budget per Person</h3>
+                            <div class="space-y-4">
+                                <div class="budget-slider">
+                                    <input type="range" id="budgetRange" min="1000" max="15000" value="5000" class="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer">
+                                    <div class="flex justify-between text-sm text-text-secondary mt-2">
+                                        <span>$1,000</span>
+                                        <span>$15,000+</span>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-2xl font-bold text-primary">$<span id="budgetValue">5,000</span></span>
+                                    <span class="text-text-secondary"> per person</span>
+                                </div>
+                            </div>
+
+                            <!-- Budget Categories -->
+                            <div class="mt-6 space-y-3">
+                                <div class="budget-category p-3 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-primary hover:bg-primary-50 transition-all duration-300" data-budget="budget">
+                                    <div class="font-semibold text-text-primary">Budget Traveler</div>
+                                    <div class="text-sm text-text-secondary">$1,000 - $3,000</div>
+                                </div>
+                                <div class="budget-category p-3 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-primary hover:bg-primary-50 transition-all duration-300" data-budget="mid-range">
+                                    <div class="font-semibold text-text-primary">Mid-Range Explorer</div>
+                                    <div class="text-sm text-text-secondary">$3,000 - $7,000</div>
+                                </div>
+                                <div class="budget-category p-3 border-2 border-primary border-primary bg-primary-50 rounded-lg cursor-pointer" data-budget="luxury">
+                                    <div class="font-semibold text-text-primary">Luxury Experience</div>
+                                    <div class="text-sm text-text-secondary">$7,000 - $15,000+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- What's Included -->
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Budget Includes</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-text-primary">Accommodation</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-text-primary">Transportation</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-text-primary">Activities & Tours</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-text-primary">Some Meals</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-text-secondary">Flights not included</span>
+                                </div>
+                            </div>
+
+                            <!-- Budget Calculator -->
+                            <div class="mt-6 p-4 bg-surface rounded-lg">
+                                <h4 class="font-semibold text-text-primary mb-2">Estimated Total</h4>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-text-secondary">2 Adults × 7 Days</span>
+                                    <span class="text-xl font-bold text-primary">$10,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Activities & Interests -->
+            <div id="step5" class="wizard-step hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-text-primary mb-4">What interests you most?</h2>
+                    <p class="text-lg text-text-secondary">Select activities and experiences that excite you</p>
+                </div>
+
+                <div class="max-w-6xl mx-auto">
+                    <!-- Activity Categories -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                        <!-- Adventure -->
+                        <div class="card-elevated p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14,6L10.25,11L13.1,14.8L11.5,16C9.81,13.75 7,10 7,10L1,18H23L14,6Z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary">Adventure</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="hiking">
+                                    <span class="text-text-secondary">Hiking & Trekking</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="water-sports">
+                                    <span class="text-text-secondary">Water Sports</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="extreme-sports">
+                                    <span class="text-text-secondary">Extreme Sports</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="wildlife">
+                                    <span class="text-text-secondary">Wildlife Safari</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Culture -->
+                        <div class="card-elevated p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6Z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary">Culture</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="museums">
+                                    <span class="text-text-secondary">Museums & Galleries</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="historical-sites">
+                                    <span class="text-text-secondary">Historical Sites</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="local-experiences">
+                                    <span class="text-text-secondary">Local Experiences</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="festivals">
+                                    <span class="text-text-secondary">Festivals & Events</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Relaxation -->
+                        <div class="card-elevated p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary">Relaxation</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="spa-wellness">
+                                    <span class="text-text-secondary">Spa & Wellness</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="beaches">
+                                    <span class="text-text-secondary">Beach Relaxation</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="yoga-meditation">
+                                    <span class="text-text-secondary">Yoga & Meditation</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="luxury-resorts">
+                                    <span class="text-text-secondary">Luxury Resorts</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Food & Drink -->
+                        <div class="card-elevated p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8.1,13.34L3.91,9.16C2.35,7.59 2.35,5.06 3.91,3.5L10.93,10.5L8.1,13.34M14.88,11.53C16.32,12.97 16.32,15.24 14.88,16.69C13.44,18.13 11.17,18.13 9.72,16.69L10.5,15.91L11.28,15.13L14.88,11.53M19.5,2.5L17.5,4.5L15.5,2.5L14,4L16,6L14,8L15.5,9.5L17.5,7.5L19.5,9.5L21,8L19,6L21,4L19.5,2.5Z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary">Food & Drink</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="fine-dining">
+                                    <span class="text-text-secondary">Fine Dining</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="street-food">
+                                    <span class="text-text-secondary">Street Food Tours</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="wine-tasting">
+                                    <span class="text-text-secondary">Wine Tasting</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="cooking-classes">
+                                    <span class="text-text-secondary">Cooking Classes</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Shopping -->
+                        <div class="card-elevated p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17,18C17.56,18 18,18.44 18,19A1,1 0 0,1 17,20H7A1,1 0 0,1 6,19C6,18.44 6.44,18 7,18H17M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5H5.21L4.27,3H1Z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary">Shopping</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="luxury-shopping">
+                                    <span class="text-text-secondary">Luxury Shopping</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="local-markets">
+                                    <span class="text-text-secondary">Local Markets</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="artisan-crafts">
+                                    <span class="text-text-secondary">Artisan Crafts</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="souvenirs">
+                                    <span class="text-text-secondary">Unique Souvenirs</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Nightlife -->
+                        <div class="card-elevated p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary">Nightlife</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="bars-clubs">
+                                    <span class="text-text-secondary">Bars & Clubs</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="live-music">
+                                    <span class="text-text-secondary">Live Music</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="theater-shows">
+                                    <span class="text-text-secondary">Theater & Shows</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200" value="rooftop-bars">
+                                    <span class="text-text-secondary">Rooftop Bars</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Accommodation & Final Details -->
+            <div id="step6" class="wizard-step hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-text-primary mb-4">Where would you like to stay?</h2>
+                    <p class="text-lg text-text-secondary">Choose your preferred accommodation style and finalize your preferences</p>
+                </div>
+
+                <div class="max-w-6xl mx-auto">
+                    <!-- Accommodation Types -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                        <div class="accommodation-card cursor-pointer group" data-type="luxury-hotel">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1721278692978-61c35d60b914" 
+                                     alt="Luxurious five-star hotel suite with elegant furnishings, premium amenities, and stunning ocean views" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.src='https://images.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_1280.jpg'; this.onerror=null;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <h3 class="text-white font-semibold text-lg">Luxury Hotels</h3>
+                                    <p class="text-white/80 text-sm">5-star service & amenities</p>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center accommodation-checkbox">
+                                    <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card cursor-pointer group" data-type="boutique">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1647249893022-9287c83b8cc3" 
+                                     alt="Charming boutique hotel lobby with unique design, local artwork, and intimate atmosphere" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.src='https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=2940&h=1960&dpr=2'; this.onerror=null;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <h3 class="text-white font-semibold text-lg">Boutique Hotels</h3>
+                                    <p class="text-white/80 text-sm">Unique character & charm</p>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center accommodation-checkbox">
+                                    <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card cursor-pointer group" data-type="resort">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1729606559415-4c1e0f363133" 
+                                     alt="All-inclusive beach resort with multiple pools, restaurants, and recreational facilities" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.src='https://images.pixabay.com/photo/2016/04/15/11/46/swimming-pool-1330850_1280.jpg'; this.onerror=null;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <h3 class="text-white font-semibold text-lg">Resorts</h3>
+                                    <p class="text-white/80 text-sm">All-inclusive experiences</p>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center accommodation-checkbox">
+                                    <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card cursor-pointer group" data-type="villa">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1716483714417-c23efa1bd67c" 
+                                     alt="Private luxury villa with infinity pool, modern architecture, and panoramic landscape views" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.src='https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=2940&h=1960&dpr=2'; this.onerror=null;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <h3 class="text-white font-semibold text-lg">Private Villas</h3>
+                                    <p class="text-white/80 text-sm">Ultimate privacy & space</p>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center accommodation-checkbox">
+                                    <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card cursor-pointer group" data-type="local">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1686590117512-5629a3c78ce4" 
+                                     alt="Traditional local guesthouse with authentic cultural decor and warm hospitality atmosphere" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.src='https://images.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg'; this.onerror=null;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <h3 class="text-white font-semibold text-lg">Local Stays</h3>
+                                    <p class="text-white/80 text-sm">Authentic experiences</p>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center accommodation-checkbox">
+                                    <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card cursor-pointer group" data-type="eco">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1638061509294-10e88acf66bd" 
+                                     alt="Sustainable eco-lodge surrounded by pristine nature with environmentally conscious design and practices" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.src='https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=2940&h=1960&dpr=2'; this.onerror=null;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <h3 class="text-white font-semibold text-lg">Eco Lodges</h3>
+                                    <p class="text-white/80 text-sm">Sustainable & natural</p>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white bg-white/20 flex items-center justify-center accommodation-checkbox">
+                                    <svg class="w-4 h-4 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Preferences -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Special Requirements</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200">
+                                    <span class="text-text-secondary">Accessibility needs</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200">
+                                    <span class="text-text-secondary">Dietary restrictions</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200">
+                                    <span class="text-text-secondary">Pet-friendly accommodations</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-neutral-300 rounded focus:ring-primary-200">
+                                    <span class="text-text-secondary">Child-friendly facilities</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="card-elevated p-6">
+                            <h3 class="text-xl font-semibold text-text-primary mb-4">Additional Notes</h3>
+                            <textarea 
+                                placeholder="Tell us anything else that would help us create your perfect trip..."
+                                class="w-full h-32 px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary-200 focus:border-primary resize-none"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center mt-12">
+                <button id="prevBtn" class="bg-neutral-200 text-text-primary font-semibold px-6 py-3 rounded-lg hover:bg-neutral-300 transition-colors hidden">
+                    ← Previous
+                </button>
+                <div class="flex-1"></div>
+                <button id="nextBtn" class="btn-gradient px-8 py-3 rounded-lg">
+                    Next Step →
+                </button>
+                <button id="generateBtn" class="btn-gradient px-8 py-3 rounded-lg hidden">
+                    Generate My Trip
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generated Itinerary Section -->
+    <section id="itinerarySection" class="py-20 bg-surface hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-text-primary mb-4">Your Personalized Itinerary</h2>
+                <p class="text-lg text-text-secondary">Based on your preferences, here's your custom travel experience</p>
+            </div>
+
+            <!-- Itinerary Summary -->
+            <div class="card-elevated p-8 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">7 Days</div>
+                        <div class="text-text-secondary">Duration</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">$5,200</div>
+                        <div class="text-text-secondary">Per Person</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">95%</div>
+                        <div class="text-text-secondary">Match Score</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button class="btn-gradient px-6 py-3 rounded-lg">
+                        Save Itinerary
+                    </button>
+                    <button class="bg-white text-primary border-2 border-primary font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors">
+                        Share Trip
+                    </button>
+                    <button class="bg-white text-primary border-2 border-primary font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors">
+                        Export PDF
+                    </button>
+                    <a href="contact_concierge.html" class="bg-secondary text-white font-semibold px-6 py-3 rounded-lg hover:bg-secondary-700 transition-colors">
+                        Book Consultation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Day by Day Itinerary -->
+            <div class="space-y-6">
+                <!-- Day 1 -->
+                <div class="card-elevated p-6">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">1</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-text-primary">Arrival in Santorini</h3>
+                            <p class="text-text-secondary">Welcome to your Greek island paradise</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-text-primary">Morning</h4>
+                            <p class="text-text-secondary text-sm">Arrive at Santorini Airport, private transfer to hotel</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-text-primary">Afternoon</h4>
+                            <p class="text-text-secondary text-sm">Check-in at luxury hotel, explore Fira town</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-text-primary">Evening</h4>
+                            <p class="text-text-secondary text-sm">Welcome dinner with sunset views</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="card-elevated p-6">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">2</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-text-primary">Oia Village & Wine Tasting</h3>
+                            <p class="text-text-secondary">Discover the most beautiful village in Greece</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-text-primary">Morning</h4>
+                            <p class="text-text-secondary text-sm">Private tour of Oia village, photography session</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-text-primary">Afternoon</h4>
+                            <p class="text-text-secondary text-sm">Wine tasting at traditional vineyard</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-text-primary">Evening</h4>
+                            <p class="text-text-secondary text-sm">Romantic dinner at cliffside restaurant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky Booking Bar -->
+    <div id="stickyBooking" class="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 p-4 shadow-lg z-40 hidden">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div>
+                <div class="font-semibold text-text-primary">Ready to book your dream trip?</div>
+                <div class="text-sm text-text-secondary">Get expert guidance from our travel consultants</div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="bg-white text-primary border-2 border-primary font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors">
+                    Save for Later
+                </button>
+                <a href="contact_concierge.html" class="btn-gradient px-6 py-3 rounded-lg">
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup Modal -->
+    <div id="newsletterModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-text-primary mb-2">Stay Inspired</h3>
+                <p class="text-text-secondary">Get travel tips, destination guides, and exclusive offers</p>
+            </div>
+            <form class="space-y-4">
+                <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary-200 focus:border-primary">
+                <button type="submit" class="w-full btn-gradient py-3 rounded-lg">Subscribe</button>
+            </form>
+            <button id="closeNewsletterModal" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-wanderlust-ocean rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold">ExploreWorld</span>
+                    </div>
+                    <p class="text-neutral-400 mb-4">
+                        Transform your wanderlust into wonder-filled reality with curated luxury travel experiences.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="destinations_gallery.html" class="text-neutral-400 hover:text-white transition-colors">Destinations</a></li>
+                        <li><a href="tour_packages.html" class="text-neutral-400 hover:text-white transition-colors">Tour Packages</a></li>
+                        <li><a href="custom_trip_planner.html" class="text-neutral-400 hover:text-white transition-colors">Trip Planner</a></li>
+                        <li><a href="contact_concierge.html" class="text-neutral-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">Luxury Travel</a></li>
+                        <li><a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">Cultural Tours</a></li>
+                        <li><a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">Adventure Trips</a></li>
+                        <li><a href="javascript:void(0)" class="text-neutral-400 hover:text-white transition-colors">Wellness Retreats</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="text-neutral-400">
+                            <span class="block">Phone: +1 (555) 123-4567</span>
+                        </li>
+                        <li class="text-neutral-400">
+                            <span class="block">Email: hello@exploreworld.com</span>
+                        </li>
+                        <li class="text-neutral-400">
+                            <span class="block">24/7 Concierge Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-neutral-800 mt-12 pt-8 text-center">
+                <p class="text-neutral-400">
+                    © 2025 ExploreWorld. All Rights Reserved. | Privacy Policy | Terms of Service
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Global variables
+        let currentStep = 1;
+        const totalSteps = 6;
+        let tripData = {
+            destinations: [],
+            dates: {},
+            travelers: {},
+            budget: 5000,
+            activities: [],
+            accommodation: [],
+            preferences: {}
+        };
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            console.log('Theme toggle clicked');
+        });
+
+        // Wizard Navigation
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const generateBtn = document.getElementById('generateBtn');
+
+        function updateProgressBar() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('currentStep').textContent = currentStep;
+            document.getElementById('progressPercent').textContent = Math.round(progress);
+        }
+
+        function showStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= totalSteps; i++) {
+                document.getElementById(`step${i}`).classList.add('hidden');
+            }
+            
+            // Show current step
+            document.getElementById(`step${step}`).classList.remove('hidden');
+            
+            // Update navigation buttons
+            prevBtn.classList.toggle('hidden', step === 1);
+            nextBtn.classList.toggle('hidden', step === totalSteps);
+            generateBtn.classList.toggle('hidden', step !== totalSteps);
+            
+            updateProgressBar();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        generateBtn.addEventListener('click', () => {
+            generateItinerary();
+        });
+
+        // Destination Selection
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const destination = card.dataset.destination;
+                const checkbox = card.querySelector('.destination-checkbox svg');
+                
+                card.classList.toggle('selected');
+                checkbox.classList.toggle('hidden');
+                
+                if (card.classList.contains('selected')) {
+                    if (!tripData.destinations.includes(destination)) {
+                        tripData.destinations.push(destination);
+                    }
+                } else {
+                    tripData.destinations = tripData.destinations.filter(d => d !== destination);
+                }
+            });
+        });
+
+        // Duration Selection
+        document.querySelectorAll('.duration-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.duration-option').forEach(opt => {
+                    opt.classList.remove('border-primary', 'bg-primary-50');
+                    opt.classList.add('border-neutral-200');
+                });
+                
+                option.classList.remove('border-neutral-200');
+                option.classList.add('border-primary', 'bg-primary-50');
+                
+                tripData.dates.duration = option.dataset.duration;
+            });
+        });
+
+        // Counter Functions
+        function updateCounter(type, change) {
+            const countElement = document.getElementById(`${type}Count`);
+            let currentValue = parseInt(countElement.textContent);
+            let newValue = Math.max(0, currentValue + change);
+            
+            if (type === 'adults' && newValue < 1) {
+                newValue = 1; // At least 1 adult required
+            }
+            
+            countElement.textContent = newValue;
+            tripData.travelers[type] = newValue;
+        }
+
+        // Budget Slider
+        const budgetRange = document.getElementById('budgetRange');
+        const budgetValue = document.getElementById('budgetValue');
+
+        if (budgetRange) {
+            budgetRange.addEventListener('input', (e) => {
+                const value = parseInt(e.target.value);
+                budgetValue.textContent = value.toLocaleString();
+                tripData.budget = value;
+            });
+        }
+
+        // Budget Categories
+        document.querySelectorAll('.budget-category').forEach(category => {
+            category.addEventListener('click', () => {
+                document.querySelectorAll('.budget-category').forEach(cat => {
+                    cat.classList.remove('border-primary', 'bg-primary-50');
+                    cat.classList.add('border-neutral-200');
+                });
+                
+                category.classList.remove('border-neutral-200');
+                category.classList.add('border-primary', 'bg-primary-50');
+                
+                tripData.preferences.budgetCategory = category.dataset.budget;
+            });
+        });
+
+        // Occasion Selection
+        document.querySelectorAll('.occasion-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.occasion-option').forEach(opt => {
+                    opt.classList.remove('border-primary', 'bg-primary-50');
+                    opt.classList.add('border-neutral-200');
+                });
+                
+                option.classList.remove('border-neutral-200');
+                option.classList.add('border-primary', 'bg-primary-50');
+                
+                tripData.preferences.occasion = option.dataset.occasion;
+            });
+        });
+
+        // Activity Selection
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    if (e.target.checked) {
+                        if (!tripData.activities.includes(e.target.value)) {
+                            tripData.activities.push(e.target.value);
+                        }
+                    } else {
+                        tripData.activities = tripData.activities.filter(a => a !== e.target.value);
+                    }
+                }
+            });
+        });
+
+        // Accommodation Selection
+        document.querySelectorAll('.accommodation-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.dataset.type;
+                const checkbox = card.querySelector('.accommodation-checkbox svg');
+                
+                card.classList.toggle('selected');
+                checkbox.classList.toggle('hidden');
+                
+                if (card.classList.contains('selected')) {
+                    if (!tripData.accommodation.includes(type)) {
+                        tripData.accommodation.push(type);
+                    }
+                } else {
+                    tripData.accommodation = tripData.accommodation.filter(a => a !== type);
+                }
+            });
+        });
+
+        // Generate Itinerary
+        function generateItinerary() {
+            console.log('Generating itinerary with data:', tripData);
+            
+            // Show itinerary section
+            document.getElementById('itinerarySection').classList.remove('hidden');
+            document.getElementById('stickyBooking').classList.remove('hidden');
+            
+            // Scroll to itinerary
+            document.getElementById('itinerarySection').scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Show newsletter modal after 3 seconds
+            setTimeout(() => {
+                document.getElementById('newsletterModal').classList.remove('hidden');
+            }, 3000);
+        }
+
+        // Newsletter Modal
+        document.getElementById('closeNewsletterModal').addEventListener('click', () => {
+            document.getElementById('newsletterModal').classList.add('hidden');
+        });
+
+        // Quick Start Buttons
+        document.getElementById('startPlanningBtn').addEventListener('click', () => {
+            document.querySelector('.wizard-step').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('takeQuizBtn').addEventListener('click', () => {
+            // Simulate quiz completion and jump to step 3
+            currentStep = 3;
+            showStep(currentStep);
+            document.querySelector('.wizard-step').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Initialize
+        showStep(1);
+        
+        // Initialize trip data with defaults
+        tripData.travelers = { adults: 2, children: 0, infants: 0 };
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.card-elevated, .destination-card, .accommodation-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-white/98');
+                header.classList.remove('bg-white/95');
+            } else {
+                header.classList.add('bg-white/95');
+                header.classList.remove('bg-white/98');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

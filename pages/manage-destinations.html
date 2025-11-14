@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Manage Destinations — ExploreWorld Admin</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background: #121212;
+            color: #f5f5f5;
+            padding: 20px
+        }
+
+        h1 {
+            color: #00eaff
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 18px;
+            margin-top: 12px
+        }
+
+        .list {
+            background: #1e1e1e;
+            padding: 12px;
+            border-radius: 8px
+        }
+
+        .form {
+            background: #1e1e1e;
+            padding: 12px;
+            border-radius: 8px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #121212
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #333
+        }
+
+        th {
+            background: #00eaff;
+            color: #000
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            background: #2a2a2a;
+            color: #fff;
+            margin-bottom: 8px
+        }
+
+        button {
+            background: #00eaff;
+            color: #000;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer
+        }
+
+        .del {
+            background: #f44336;
+            color: #fff;
+            padding: 6px;
+            border: none;
+            border-radius: 6px
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <h1>Manage Destinations</h1>
+        <div><a style="background:#444;color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none"
+                href="admin-dashboard.html">← Dashboard</a></div>
+    </div>
+
+    <div class="grid">
+        <div class="list">
+            <h3 style="color:#00eaff">Destinations</h3>
+            <table id="destTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Country</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="form">
+            <h3 style="color:#00eaff">Add / Edit Destination</h3>
+            <form id="destForm">
+                <input type="hidden" id="destId" />
+                <label>Title</label>
+                <input id="destTitle" placeholder="e.g., Manali" />
+                <label>Country</label>
+                <input id="destCountry" placeholder="e.g., India" />
+                <label>Price (USD)</label>
+                <input id="destPrice" type="number" min="0" />
+                <label>Description</label>
+                <textarea id="destDesc" rows="4" placeholder="Short description"></textarea>
+                <div style="display:flex;gap:8px">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="resetForm()" style="background:#666;color:#fff">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const DEST_KEY = 'ew_destinations';
+
+        function seedIfEmpty() {
+            if (!localStorage.getItem(DEST_KEY)) {
+                const seed = [
+                    { id: 1, title: "Manali", country: "India", price: 200, desc: "Mountain holiday" },
+                    { id: 2, title: "Goa", country: "India", price: 150, desc: "Beach resort" }
+                ];
+                localStorage.setItem(DEST_KEY, JSON.stringify(seed));
+            }
+        }
+
+        function loadDest() {
+            const arr = JSON.parse(localStorage.getItem(DEST_KEY) || '[]');
+            const tbody = document.querySelector('#destTable tbody'); tbody.innerHTML = '';
+            arr.forEach(d => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${d.title}</td><td>${d.country}</td><td>$${d.price}</td>
+          <td><button onclick="editDest(${d.id})">Edit</button>
+          <button class="del" onclick="deleteDest(${d.id})">Delete</button></td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function resetForm() {
+            document.getElementById('destId').value = '';
+            document.getElementById('destTitle').value = '';
+            document.getElementById('destCountry').value = '';
+            document.getElementById('destPrice').value = '';
+            document.getElementById('destDesc').value = '';
+        }
+
+        document.getElementById('destForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const id = document.getElementById('destId').value;
+            const title = document.getElementById('destTitle').value.trim();
+            const country = document.getElementById('destCountry').value.trim();
+            const price = Number(document.getElementById('destPrice').value || 0);
+            const desc = document.getElementById('destDesc').value.trim();
+
+            if (!title || !country || !price) { alert('Title, country and price are required'); return; }
+
+            const arr = JSON.parse(localStorage.getItem(DEST_KEY) || '[]');
+            if (id) {
+                const idx = arr.findIndex(x => x.id === Number(id));
+                if (idx !== -1) { arr[idx] = { ...arr[idx], title, country, price, desc }; }
+            } else {
+                const nextId = arr.length ? Math.max(...arr.map(x => x.id)) + 1 : 1;
+                arr.unshift({ id: nextId, title, country, price, desc });
+            }
+            localStorage.setItem(DEST_KEY, JSON.stringify(arr));
+            alert('Destination saved');
+            resetForm();
+            loadDest();
+        });
+
+        function editDest(id) {
+            const arr = JSON.parse(localStorage.getItem(DEST_KEY) || '[]');
+            const d = arr.find(x => x.id === id); if (!d) return alert('Not found');
+            document.getElementById('destId').value = d.id;
+            document.getElementById('destTitle').value = d.title;
+            document.getElementById('destCountry').value = d.country;
+            document.getElementById('destPrice').value = d.price;
+            document.getElementById('destDesc').value = d.desc;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteDest(id) {
+            if (!confirm('Delete destination?')) return;
+            const arr = JSON.parse(localStorage.getItem(DEST_KEY) || '[]').filter(x => x.id !== id);
+            localStorage.setItem(DEST_KEY, JSON.stringify(arr));
+            alert('Deleted');
+            loadDest();
+        }
+
+        seedIfEmpty();
+        loadDest();
+    </script>
+</body>
+
+</html>

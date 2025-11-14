@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ExploreWorld — Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    :root {
+      --accent: #00eaff;
+      --bg: #121212;
+      --panel: #2a2a2a;
+      --muted: #f5f5f5;
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--muted);
+    }
+
+    .wrap {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(180deg, #28313b, #485461);
+      padding: 20px;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar h2 {
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin: 6px 0;
+    }
+
+    .sidebar a.active {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .main {
+      margin-left: 250px;
+      flex: 1;
+      padding: 24px;
+      background: #1e1e1e;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      color: var(--accent);
+    }
+
+    header button {
+      background: #f44336;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .small {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      background: var(--panel);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+
+    th {
+      background: var(--accent);
+      color: #000;
+    }
+
+    @media(max-width:700px) {
+      .sidebar {
+        left: -260px;
+        position: fixed
+      }
+
+      .main {
+        margin-left: 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="sidebar" id="sidebar">
+      <h2>🌍 ExploreWorld</h2>
+      <a href="admin-dashboard.html" class="active">Dashboard</a>
+      <a href="manage-users.html">Manage Users</a>
+      <a href="manage-destinations.html">Manage Destinations</a>
+      <a href="manage-bookings.html">Manage Bookings</a>
+      <a href="add-user.html">Add User</a>
+    </div>
+
+    <main class="main">
+      <header>
+        <h1>Admin Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+      </header>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Total Users</h3>
+          <p id="totalUsers" style="font-weight:700;font-size:1.3rem">0</p>
+          <div class="small">Tap Manage Users to edit</div>
+        </div>
+        <div class="card">
+          <h3>Active Bookings</h3>
+          <p id="totalBookings" style="font-weight:700;font-size:1.3rem">0</p>
+          <div class="small">Tap Manage Bookings to update status</div>
+        </div>
+        <div class="card">
+          <h3>Destinations</h3>
+          <p id="totalDest" style="font-weight:700;font-size:1.3rem">0</p>
+          <div class="small">Tap Manage Destinations to add or edit</div>
+        </div>
+        <div class="card">
+          <h3>Revenue (sample)</h3>
+          <p style="font-weight:700;font-size:1.3rem">$15,200</p>
+          <div class="small">Static demo value</div>
+        </div>
+      </div>
+
+      <section style="margin-top:24px">
+        <h2 style="color:var(--accent)">Recent Users</h2>
+        <table id="recentUsers">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>DOB</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const USERS_KEY = "ew_users";
+    const BOOKS_KEY = "ew_bookings";
+    const DEST_KEY = "ew_destinations";
+
+    function seedIfEmpty() {
+      if (!localStorage.getItem(USERS_KEY)) {
+        const seedUsers = [
+          { id: 1, name: "John Doe", email: "john@example.com", dob: "1998-05-15" },
+          { id: 2, name: "Jane Smith", email: "jane@example.com", dob: "2000-02-10" }
+        ];
+        localStorage.setItem(USERS_KEY, JSON.stringify(seedUsers));
+      }
+      if (!localStorage.getItem(BOOKS_KEY)) {
+        const seedBookings = [
+          { id: 1, user: "John Doe", package: "Himachal Explorer", date: "2025-12-01", status: "Confirmed" },
+          { id: 2, user: "Jane Smith", package: "Goa Beach Trip", date: "2025-11-18", status: "Pending" }
+        ];
+        localStorage.setItem(BOOKS_KEY, JSON.stringify(seedBookings));
+      }
+      if (!localStorage.getItem(DEST_KEY)) {
+        const seedDest = [
+          { id: 1, title: "Manali", country: "India", price: 200 },
+          { id: 2, title: "Goa", country: "India", price: 150 }
+        ];
+        localStorage.setItem(DEST_KEY, JSON.stringify(seedDest));
+      }
+    }
+
+    function loadDashboard() {
+      const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+      const bookings = JSON.parse(localStorage.getItem(BOOKS_KEY) || "[]");
+      const dest = JSON.parse(localStorage.getItem(DEST_KEY) || "[]");
+
+      document.getElementById("totalUsers").textContent = users.length;
+      document.getElementById("totalBookings").textContent = bookings.length;
+      document.getElementById("totalDest").textContent = dest.length;
+
+      const tbody = document.querySelector("#recentUsers tbody");
+      tbody.innerHTML = "";
+      users.slice(0, 5).forEach(u => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${u.name}</td><td>${u.email}</td><td>${u.dob || '-'}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function logout() {
+      localStorage.removeItem("isAdmin");
+      sessionStorage.removeItem("isAdmin");
+      alert("Logged out successfully.");
+      window.location.href = "admin-login.html";
+    }
+
+    seedIfEmpty();
+    loadDashboard();
+  </script>
+</body>
+
+</html>

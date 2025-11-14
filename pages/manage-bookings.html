@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Manage Bookings — ExploreWorld Admin</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background: #121212;
+            color: #f5f5f5;
+            padding: 20px
+        }
+
+        h1 {
+            color: #00eaff
+        }
+
+        .btn {
+            background: #00eaff;
+            color: #000;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: none
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+            background: #1e1e1e;
+            border-radius: 8px
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            text-align: left
+        }
+
+        th {
+            background: #00eaff;
+            color: #000
+        }
+
+        select {
+            padding: 6px;
+            border-radius: 6px;
+            border: none;
+            background: #2a2a2a;
+            color: #fff
+        }
+
+        .del {
+            background: #f44336;
+            color: #fff;
+            padding: 6px 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h1>Manage Bookings</h1>
+        <div>
+            <a class="btn" href="admin-dashboard.html">← Dashboard</a>
+        </div>
+    </div>
+
+    <table id="bookingsTable">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Package</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const BOOKS_KEY = 'ew_bookings';
+
+        function seedIfEmpty() {
+            if (!localStorage.getItem(BOOKS_KEY)) {
+                const seed = [
+                    { id: 1, user: "John Doe", package: "Himachal Explorer", date: "2025-12-01", status: "Confirmed", amount: 400 },
+                    { id: 2, user: "Jane Smith", package: "Goa Beach Trip", date: "2025-11-18", status: "Pending", amount: 250 }
+                ];
+                localStorage.setItem(BOOKS_KEY, JSON.stringify(seed));
+            }
+        }
+
+        function loadBookings() {
+            const arr = JSON.parse(localStorage.getItem(BOOKS_KEY) || '[]');
+            const tbody = document.querySelector('#bookingsTable tbody'); tbody.innerHTML = '';
+            arr.forEach(b => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${b.user}</td><td>${b.package}</td><td>${b.date}</td><td>$${b.amount}</td>
+          <td>
+            <select onchange="changeStatus(${b.id}, this.value)">
+              <option ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
+              <option ${b.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option ${b.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+          </td>
+          <td><button class="del" onclick="deleteBooking(${b.id})">Delete</button></td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function changeStatus(id, val) {
+            const arr = JSON.parse(localStorage.getItem(BOOKS_KEY) || '[]');
+            const idx = arr.findIndex(x => x.id === id);
+            if (idx === -1) return alert('Booking not found');
+            arr[idx].status = val;
+            localStorage.setItem(BOOKS_KEY, JSON.stringify(arr));
+            alert('Status updated');
+        }
+
+        function deleteBooking(id) {
+            if (!confirm('Delete booking?')) return;
+            const arr = JSON.parse(localStorage.getItem(BOOKS_KEY) || '[]').filter(x => x.id !== id);
+            localStorage.setItem(BOOKS_KEY, JSON.stringify(arr));
+            alert('Booking deleted');
+            loadBookings();
+        }
+
+        seedIfEmpty();
+        loadBookings();
+    </script>
+</body>
+
+</html>
